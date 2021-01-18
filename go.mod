@@ -1,4 +1,4 @@
-module github.com/oppermax/website
+module github.com/oppermax/oppermax.github.io
 
 go 1.14
 
