@@ -1,7 +1,13 @@
-:root {
-    font-family: Roboto, Arial, sans-serif;
+* {
     padding: 0;
     margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+:root {
+    font-family: Roboto, Arial, sans-serif;
     font-size: 16px;
     scroll-behavior: smooth;
 }
@@ -23,94 +29,184 @@ div, section, span, ul, li, a, header{
     box-sizing: border-box;
 }
 
+/*Navigation*/
 .nav-wrapper {
-    position: fixed;
-    display: inline-flex;
     height: 4rem;
-    width: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    z-index: 999;
     background: rgba(0,0,0,0.4);
+    width: 100%;
     justify-content: space-between;
-    z-index: 9999;
+    border-radius: 0.6rem;
 }
-
-.nav-wrapper ul {
-    margin: auto 3rem;
-}
-
-.nav-wrapper li {
-    list-style: none;
-    display: inline-flex;
-    line-height: 4rem;
-    margin: 0 0.5rem;
-}
-
-.nav-wrapper a {
-    color: rgba(236,247,247,0.98);
+.nav-wrapper .text{
     text-decoration: none;
+    color: white;
     font-size: 1.5rem;
+    padding: 0.2rem;
+}
+
+.nav-wrapper .text:hover {
+    color: black;
+    font-size: 2rem;
     transition: .2s;
 }
-
-.nav-wrapper h2 {
-    margin: auto 40px;
-    user-select: none;
+.nav-wrapper li, .nav-wrapper h2, .nav-wrapper ul{
+    display: inline-flex;
+    margin: auto 0.3rem;
 }
 
-.nav-wrapper ul li a:hover {
-    color: rgba(117,255,240,0.98);
-    padding: 0.1rem;
-    border-bottom: 0.02rem solid white;
-    transition: .4s;
-}
-
-
+/*General*/
 section{
     width: 100%;
-    float: left;
-    height: 100vh;
+    height: 100%;
     position: relative;
+    padding: 0;
+    margin: 0;
 }
 
 .content {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 6rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-h1 {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-img#about.content, .text#about.content{
+.item-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 50%;
 }
 
-
-#about.content img {
-    float: left;
-    max-height: 20rem;
-    padding: 1rem;
+.text-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    max-width: 50%;
 }
+
+.text-box h1, .text-box h4 {
+    margin: .5rem;
+}
+
+.image {
+    padding: 0 1rem;
+    max-width: 50%;
+    max-height: 20vh;
+    height: 100%;
+
+}
+
+/*Home Section*/
 
 #home {
-    background-color: aliceblue;
+    background-color: rgba(96, 253, 255, 1);
 }
 
-#about {
-    background-color: darkcyan;
+#home h1 {
+    font-size: 3rem;
+    padding-bottom: 2rem;
 }
+
+#home .item-wrapper i {
+    color: black;
+    font-size: 1.8rem;
+    margin-right: 3rem;
+}
+#home a {
+    text-decoration: none;
+    color: black;
+}
+
+#home ul {
+    list-style: none;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#home li {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/*About Section*/
+#about {
+    background-color: rgba(117, 255, 240, 1);
+}
+
+/*Social Section*/
 
 #social {
-    background-color: rgba(117,255,240,0.98);
+    background-color: RGB(179, 255, 255);
 }
 
-#social.content a{
-    padding: 0.3rem;
+#social .item-wrapper div a {
     color: black;
+    margin-top: 4rem;
+    padding: 2rem;
+    max-width: 70rem;
+    min-width: 5rem;
+    height: auto;
+    font-size: 1rem;
     text-decoration: none;
-    min-height: 20rem;
 }
 
+#social .item-wrapper {
+    background: white;
+    width: 40%;
+    height: 20%;
+    border-radius: 2rem;
+    padding: 2rem;
+}
+
+#social h2 {
+    padding-bottom: 2rem;
+}
+
+/*Media Queries*/
+
+@media only screen and (max-width: 1200px){
+
+
+    /* change logo size*/
+    #social .item-wrapper div a {
+        padding: 1rem;
+        font-size: 0.5rem;
+    }
+
+    .item-wrapper {
+        max-width: 70%;
+    }
+    img {
+        max-height: 40vh;
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+
+    :root {
+        font-size: 12px;
+    }
+
+    .item-wrapper {
+        max-width: 60%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text-box {
+        max-width: 50%;
+    }
+
+    img {
+        max-height: 40vh;
+    }
+}
