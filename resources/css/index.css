@@ -2,7 +2,6 @@
     font-family: Roboto, Arial, sans-serif;
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
     font-size: 16px;
     scroll-behavior: smooth;
 }
@@ -20,90 +19,95 @@ body::-webkit-scrollbar-thumb {
     background: aquamarine;
 }
 
+div, section, span, ul, li, a, header{
+    box-sizing: border-box;
+}
+
 .nav-wrapper {
     position: fixed;
-    display: flex;
+    display: inline-flex;
     height: 4rem;
     width: 100%;
     background: rgba(0,0,0,0.4);
     justify-content: space-between;
+    z-index: 9999;
 }
 
 .nav-wrapper ul {
-    top: 0;
-    margin: auto 40px;
+    margin: auto 3rem;
 }
 
 .nav-wrapper li {
     list-style: none;
-    display: inline-block;
+    display: inline-flex;
     line-height: 4rem;
     margin: 0 0.5rem;
 }
 
 .nav-wrapper a {
-    color: white;
+    color: rgba(236,247,247,0.98);
     text-decoration: none;
     font-size: 1.5rem;
     transition: .2s;
 }
 
 .nav-wrapper h2 {
-    color: white;
-    text-decoration: none;
-    font-size: 1.5rem;
     margin: auto 40px;
+    user-select: none;
 }
 
 .nav-wrapper ul li a:hover {
-    color: white;
-    padding: 0.2rem;
+    color: rgba(117,255,240,0.98);
+    padding: 0.1rem;
     border-bottom: 0.02rem solid white;
-}
-.items-wrapper {
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    transition: .4s;
 }
 
-.items-wrapper .intro {
-    position: absolute;
-    top: 50vh;
 
+section{
+    width: 100%;
+    float: left;
+    height: 100vh;
+    position: relative;
 }
 
-.items-wrapper .about {
-    align-items: center;
-    flex-direction: row;
-    position: absolute;
-    top: 100vh;
+.content {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 6rem 1rem;
 }
 
-.items-wrapper .about .text {
-    float: right;
+h1 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-.items-wrapper .about .image {
+
+img#about.content, .text#about.content{
+    max-width: 50%;
+}
+
+
+#about.content img {
     float: left;
     max-height: 20rem;
     padding: 1rem;
 }
-.spacer {
-    position: absolute;
-    top: 75vh;
-    padding: 2rem;
-    color: transparent;
+
+#home {
+    background-color: aliceblue;
 }
 
-.items-wrapper .social {
-    position: absolute;
-    top: 275vh;
-    padding: 6rem 1rem;
+#about {
+    background-color: darkcyan;
+}
+
+#social {
     background-color: rgba(117,255,240,0.98);
-
 }
 
-.icons a{
+#social.content a{
     padding: 0.3rem;
     color: black;
     text-decoration: none;
