@@ -1,8 +1,13 @@
-:root {
-    font-family: Roboto, Arial, sans-serif;
+* {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+:root {
+    font-family: Roboto, Arial, sans-serif;
     font-size: 16px;
     scroll-behavior: smooth;
 }
@@ -20,93 +25,188 @@ body::-webkit-scrollbar-thumb {
     background: aquamarine;
 }
 
+div, section, span, ul, li, a, header{
+    box-sizing: border-box;
+}
+
+/*Navigation*/
 .nav-wrapper {
+    height: 4rem;
     position: fixed;
     display: flex;
-    height: 4rem;
-    width: 100%;
+    flex-direction: row;
+    z-index: 999;
     background: rgba(0,0,0,0.4);
+    width: 100%;
     justify-content: space-between;
+    border-radius: 0.6rem;
 }
-
-.nav-wrapper ul {
-    top: 0;
-    margin: auto 40px;
-}
-
-.nav-wrapper li {
-    list-style: none;
-    display: inline-block;
-    line-height: 4rem;
-    margin: 0 0.5rem;
-}
-
-.nav-wrapper a {
-    color: white;
+.nav-wrapper .text{
     text-decoration: none;
+    color: white;
     font-size: 1.5rem;
+    padding: 0.2rem;
+}
+
+.nav-wrapper .text:hover {
+    color: black;
+    font-size: 2rem;
     transition: .2s;
 }
-
-.nav-wrapper h2 {
-    color: white;
-    text-decoration: none;
-    font-size: 1.5rem;
-    margin: auto 40px;
+.nav-wrapper li, .nav-wrapper h2, .nav-wrapper ul{
+    display: inline-flex;
+    margin: auto 0.3rem;
 }
 
-.nav-wrapper ul li a:hover {
-    color: white;
-    padding: 0.2rem;
-    border-bottom: 0.02rem solid white;
+/*General*/
+section{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 0;
+    margin: 0;
 }
-.items-wrapper {
-    flex-direction: column;
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 50%;
 }
 
-.items-wrapper .intro {
-    position: absolute;
-    top: 50vh;
-
-}
-
-.items-wrapper .about {
+.text-box {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-direction: row;
-    position: absolute;
-    top: 100vh;
+    text-align: justify;
+    max-width: 50%;
 }
 
-.items-wrapper .about .text {
-    float: right;
-}
-.items-wrapper .about .image {
-    float: left;
-    max-height: 20rem;
-    padding: 1rem;
-}
-.spacer {
-    position: absolute;
-    top: 75vh;
-    padding: 2rem;
-    color: transparent;
+.text-box h1, .text-box h4 {
+    margin: .5rem;
 }
 
-.items-wrapper .social {
-    position: absolute;
-    top: 275vh;
-    padding: 6rem 1rem;
-    background-color: rgba(117,255,240,0.98);
+.image {
+    padding: 0 1rem;
+    max-width: 50%;
+    max-height: 20vh;
+    height: 100%;
 
 }
 
-.icons a{
-    padding: 0.3rem;
+/*Home Section*/
+
+#home {
+    background-color: rgba(96, 253, 255, 1);
+}
+
+#home h1 {
+    font-size: 3rem;
+    padding-bottom: 2rem;
+}
+
+#home .item-wrapper i {
     color: black;
+    font-size: 1.8rem;
+    margin-right: 3rem;
+}
+#home a {
     text-decoration: none;
-    min-height: 20rem;
+    color: black;
 }
 
+#home ul {
+    list-style: none;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#home li {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/*About Section*/
+#about {
+    background-color: rgba(117, 255, 240, 1);
+}
+
+/*Social Section*/
+
+#social {
+    background-color: RGB(179, 255, 255);
+}
+
+#social .item-wrapper div a {
+    color: black;
+    margin-top: 4rem;
+    padding: 2rem;
+    max-width: 70rem;
+    min-width: 5rem;
+    height: auto;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+#social .item-wrapper {
+    background: white;
+    width: 40%;
+    height: 20%;
+    border-radius: 2rem;
+    padding: 2rem;
+}
+
+#social h2 {
+    padding-bottom: 2rem;
+}
+
+/*Media Queries*/
+
+@media only screen and (max-width: 1200px){
+
+
+    /* change logo size*/
+    #social .item-wrapper div a {
+        padding: 1rem;
+        font-size: 0.5rem;
+    }
+
+    .item-wrapper {
+        max-width: 70%;
+    }
+    img {
+        max-height: 40vh;
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+
+    :root {
+        font-size: 12px;
+    }
+
+    .item-wrapper {
+        max-width: 60%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text-box {
+        max-width: 50%;
+    }
+
+    img {
+        max-height: 40vh;
+    }
+}
