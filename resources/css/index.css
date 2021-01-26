@@ -190,20 +190,27 @@ section{
 }
 
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 640px) {
 
     :root {
         font-size: 12px;
     }
 
+    section {
+        min-height: 100%;
+        height: fit-content;
+        padding: 3rem 0;
+
+    }
     .item-wrapper {
-        max-width: 60%;
+        max-width: 90%;
         flex-direction: column;
         align-items: center;
     }
 
     .text-box {
-        max-width: 50%;
+        max-width: 80%;
+        min-width: 70%;
     }
 
     img {
