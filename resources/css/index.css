@@ -39,7 +39,6 @@ div, section, span, ul, li, a, header{
     background: rgba(0,0,0,0.4);
     width: 100%;
     justify-content: space-between;
-    border-radius: 0.6rem;
 }
 .nav-wrapper .text{
     text-decoration: none;
@@ -50,12 +49,11 @@ div, section, span, ul, li, a, header{
 
 .nav-wrapper .text:hover {
     color: black;
-    font-size: 2rem;
     transition: .2s;
 }
 .nav-wrapper li, .nav-wrapper h2, .nav-wrapper ul{
     display: inline-flex;
-    margin: auto 0.3rem;
+    margin: auto 0.5rem;
 }
 
 /*General*/
@@ -73,11 +71,14 @@ section{
     justify-content: center;
 }
 
+
+
 .item-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     max-width: 50%;
+
 }
 
 .text-box {
@@ -86,6 +87,7 @@ section{
     align-items: center;
     text-align: justify;
     max-width: 50%;
+    line-height: 1.5rem;
 }
 
 .text-box h1, .text-box h4 {
@@ -97,7 +99,6 @@ section{
     max-width: 50%;
     max-height: 20vh;
     height: 100%;
-
 }
 
 /*Home Section*/
@@ -121,30 +122,38 @@ section{
     color: black;
 }
 
-#home ul {
-    list-style: none;
-    font-size: 1rem;
+#home .icon-list {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
 }
 
-#home li {
-    display: inline-flex;
-    flex-direction: row;
+#home .icon-sublist {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+}
+
+#home .icon-sublist h2, .icon-sublist i {
+    padding: 0.5rem;
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+#home .icon-sublist.text {
+    align-items: flex-end;
 }
 
 /*About Section*/
 #about {
-    background-color: rgba(117, 255, 240, 1);
+    background-color: rgba(96, 253, 255, 1);
 }
+
 
 /*Social Section*/
 
 #social {
-    background-color: RGB(179, 255, 255);
+    background-color: rgba(96, 253, 255, 1);
 }
 
 #social .item-wrapper div a {
