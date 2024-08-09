@@ -1,0 +1,3 @@
+[submodule "profile/themes/yuan"]
+	path = profile/themes/yuan
+	url = https://github.com/17ms/yuan.git
