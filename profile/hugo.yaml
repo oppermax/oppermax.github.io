@@ -2,7 +2,7 @@
 # titles is stripped to only contain unicode range U+0000-007F
 
 baseURL: https://oppermax.com/
-title: Max
+title: max opperman (oppermax)
 author: Max Opperman
 language: en-GB
 paginate: 10
@@ -44,6 +44,7 @@ params:
 
   # List of displayed items (e.g. software projects)
   itemDisplays:
-    - name: Example project
+    - name: MOIA GmbH
       url: "#"
-      description: Project description example
+      description: 2019 - presen | DevOps Engineer
+      
