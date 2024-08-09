@@ -2,7 +2,7 @@
 # titles is stripped to only contain unicode range U+0000-007F
 
 baseURL: https://oppermax.com/
-title: Max Opperman
+title: Max
 author: Max Opperman
 language: en-GB
 paginate: 10
