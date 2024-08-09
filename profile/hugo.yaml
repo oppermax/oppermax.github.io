@@ -51,5 +51,5 @@ params:
   # List of displayed items (e.g. software projects)
   itemDisplays:
     - name: MOIA GmbH
-      url: "#"
+      url: "https://moia.io/"
       description: 2019 - present | DevOps Engineer
