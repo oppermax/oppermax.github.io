@@ -37,14 +37,19 @@ params:
   socialIcons:
     - name: email
       url: "mailto:moin+website@oppermax.com"
-      display: Optional name shown in tooltips, defaults to capitalized name
+      display: Email
     - name: github
       url: "https://github.com/oppermax"
-      display: Optional name shown in tooltips, defaults to capitalized name
+      display: GitHub
+    - name: linkedin
+      url: "https://www.linkedin.com/in/max-opperman-a1a45b1b6/"
+      display: LinkedIn
+    - name: soundcloud
+      url: "https://soundcloud.com/oppermax"
+      display: SoundCloud
 
   # List of displayed items (e.g. software projects)
   itemDisplays:
     - name: MOIA GmbH
       url: "#"
-      description: 2019 - presen | DevOps Engineer
-      
+      description: 2019 - present | DevOps Engineer
