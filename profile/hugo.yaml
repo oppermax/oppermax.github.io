@@ -36,7 +36,10 @@ params:
   # List of the available icons can be found in the /layouts/partials/svg.html file
   socialIcons:
     - name: email
-      url: "mailto:example@example.com"
+      url: "mailto:moin+website@oppermax.com"
+      display: Optional name shown in tooltips, defaults to capitalized name
+    - name: github
+      url: "https://github.com/oppermax"
       display: Optional name shown in tooltips, defaults to capitalized name
 
   # List of displayed items (e.g. software projects)
