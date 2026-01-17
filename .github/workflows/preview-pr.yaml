@@ -19,7 +19,7 @@ jobs:
   build-preview:
     runs-on: ubuntu-latest
     # Only run for pull requests or branches that are part of a PR
-    if: github.event_name == 'pull_request' || (github.event_name == 'push' && startsWith(github.ref, 'refs/heads/copilot/'))
+    if: "github.event_name == 'pull_request' || (github.event_name == 'push' && startsWith(github.ref, 'refs/heads/copilot/'))"
     env:
       HUGO_VERSION: 0.131.0
     steps:
@@ -115,11 +115,7 @@ jobs:
               comment.body.includes('Preview deployed')
             );
             
-            const commentBody = `## ✅ Preview deployed
-
-Preview URL: ${previewUrl}
-
-Preview will be available in a few moments. The preview will be updated automatically when you push new changes.`;
+            const commentBody = `## ✅ Preview deployed\n\nPreview URL: ${previewUrl}\n\nPreview will be available in a few moments. The preview will be updated automatically when you push new changes.`;
             
             if (botComment) {
               await github.rest.issues.updateComment({
@@ -157,11 +153,7 @@ Preview will be available in a few moments. The preview will be updated automati
               comment.body.includes('Preview deployed')
             );
             
-            const commentBody = `## ✅ Preview deployed
-
-Preview URL: ${previewUrl}
-
-Preview will be available in a few moments. The preview will be updated automatically when you push new changes.`;
+            const commentBody = `## ✅ Preview deployed\n\nPreview URL: ${previewUrl}\n\nPreview will be available in a few moments. The preview will be updated automatically when you push new changes.`;
             
             if (botComment) {
               await github.rest.issues.updateComment({

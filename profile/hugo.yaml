@@ -91,9 +91,9 @@ languages:
     # subtitle: "DevOps Engineer"
     keywords: "devops, engineer, max opperman, cyber security, cloud, automation, observability, reliability, integrity"
     copyright: '<a href="https://oppermax.com/">Max Opperman</a>'
-    readOtherPosts: "Read other posts"
 
     params:
+      readOtherPosts: "Read other posts"
       logo:
         logoText: "max opperman"
         logoHomeLink: "/"
