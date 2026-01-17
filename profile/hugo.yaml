@@ -1,55 +1,81 @@
-# Note that due to performance reasons the custom webfont used in the site's
-# titles is stripped to only contain unicode range U+0000-007F
-
 baseURL: https://oppermax.com/
 title: max opperman
-author: Max Opperman
-language: en-GB
+languageCode: en-GB
+theme: hello-friend-ng
+copyright: Max Opperman
+
 paginate: 10
 
-theme: yuan
-
 params:
-  description: Example description
+  dateform: "Jan 2, 2006"
+  dateformShort: "Jan 2"
+  dateformNum: "2006-01-02"
+  dateformNumTime: "2006-01-02 15:04"
 
-  # Mouse tracking animation
-  enableMouseTracker: true
+  # Subtitle for home
+  homeSubtitle: "DevOps Engineer"
 
-  # Trunaction limit of summaries inside projects display containers
-  truncationLimit: 150
+  # Set disableReadOtherPosts to true in order to hide the links to other posts
+  disableReadOtherPosts: false
 
-  # Logos, favicons, and theme colors
-  assets:
-    favicon: "favicon.ico"
-    favicon16: "favicon-16x16.png"
-    favicon32: "favicon-32x32.png"
-    appleTouchIcon: "apple-touch-icon.png"
-    safariPinnedTabIcon: "safari-pinned-tab.svg"
-    safariPinnedTabColor: "#5bbad5"
-    manifest: "manifest.json"
-    msTileColor: "#2b5797"
-    msTileIcon: "mstile-150x150.png"
-    themeColor: "#040404"
-    logo: "logo.svg"
+  # Enable sharing buttons
+  enableSharingButtons: false
 
-  # Icons shown below the about text snippet
-  # List of the available icons can be found in the /layouts/partials/svg.html file
-  socialIcons:
-    - name: email
-      url: "mailto:moin+website@oppermax.com"
-      display: Email
-    - name: github
-      url: "https://github.com/oppermax"
-      display: GitHub
-    - name: linkedin
-      url: "https://www.linkedin.com/in/max-opperman-a1a45b1b6/"
-      display: LinkedIn
-    - name: soundcloud
-      url: "https://soundcloud.com/oppermax"
-      display: SoundCloud
+  # Show a global language switcher in the navigation bar
+  enableGlobalLanguageMenu: false
 
-  # List of displayed items (e.g. software projects)
-  itemDisplays:
-    - name: MOIA GmbH
-      url: "https://moia.io/"
-      description: 2019 - present | DevOps Engineer
+  # Metadata mostly used in document's head
+  description: "Max Opperman - DevOps Engineer"
+  keywords: "devops, engineer, max opperman"
+  images: [""]
+
+  # Logo configuration
+  logo:
+    logoText: "max opperman"
+    logoHomeLink: "/"
+
+  # Social icons
+  [[params.social]]
+    name = "email"
+    url = "mailto:moin+website@oppermax.com"
+
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/oppermax"
+
+  [[params.social]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/max-opperman-a1a45b1b6/"
+
+  [[params.social]]
+    name = "soundcloud"
+    url = "https://soundcloud.com/oppermax"
+
+taxonomies:
+  category: "categories"
+  tag: "tags"
+  series: "series"
+
+languages:
+  en:
+    title: "max opperman"
+    subtitle: "DevOps Engineer"
+    keywords: "devops, engineer"
+    copyright: '<a href="https://oppermax.com/">Max Opperman</a>'
+    readOtherPosts: "Read other posts"
+
+    params:
+      logo:
+        logoText: "max opperman"
+        logoHomeLink: "/"
+
+menu:
+  main:
+    - identifier: blog
+      name: Blog
+      url: /posts
+      weight: 1
+    - identifier: about
+      name: About
+      url: /about
+      weight: 2
