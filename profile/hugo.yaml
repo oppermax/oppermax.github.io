@@ -7,6 +7,9 @@ copyright: Max Opperman
 pagination:
   pagerSize: 10
 
+enableRobotsTXT: true
+enableEmoji: true
+
 params:
   dateform: "Jan 2, 2006"
   dateformShort: "Jan 2"
@@ -22,6 +25,12 @@ params:
   # Enable sharing buttons
   enableSharingButtons: false
 
+  # Enable theme toggle
+  enableThemeToggle: true
+
+  # Reading time
+  enableReadingTime: true
+
   # Show a global language switcher in the navigation bar
   enableGlobalLanguageMenu: false
 
@@ -30,9 +39,30 @@ params:
   keywords: "devops, engineer, max opperman, cyber security, cloud, automation, observability, reliability, integrity"
   images: [""]
 
+  # Author information
+  author:
+    name: Max Opperman
+
+  # Footer configuration
+  footer:
+    trademark: 2025
+    rss: true
+    copyright: true
+    author: true
+    topText: []
+    bottomText: []
+
+  # Favicon colors
+  favicon:
+    color:
+      mask: "#5bbad5"
+      msapplication: "#2b5797"
+      theme: "#040404"
+
   # Logo configuration
   logo:
-    logoText: "max opperman"
+    logoMark: ">"
+    logoText: "$ max opperman"
     logoHomeLink: "/"
 
   # Custom CSS files
@@ -58,7 +88,7 @@ taxonomies:
 languages:
   en:
     title: "max opperman"
-    #subtitle: "DevOps Engineer"
+    # subtitle: "DevOps Engineer"
     keywords: "devops, engineer, max opperman, cyber security, cloud, automation, observability, reliability, integrity"
     copyright: '<a href="https://oppermax.com/">Max Opperman</a>'
     readOtherPosts: "Read other posts"

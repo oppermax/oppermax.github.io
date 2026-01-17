@@ -3,6 +3,9 @@ name: Deploy PR Preview
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - 'copilot/**'
 
 permissions:
   contents: write
@@ -15,6 +18,8 @@ defaults:
 jobs:
   build-preview:
     runs-on: ubuntu-latest
+    # Only run for pull requests or branches that are part of a PR
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && startsWith(github.ref, 'refs/heads/copilot/'))
     env:
       HUGO_VERSION: 0.131.0
     steps:
@@ -32,6 +37,23 @@ jobs:
           submodules: recursive
           fetch-depth: 0
       
+      - name: Determine PR number
+        id: pr
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "number=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+          else
+            # For push events, try to find the PR number from the branch
+            PR_NUMBER=$(gh pr list --head "${{ github.ref_name }}" --json number --jq '.[0].number' 2>/dev/null || echo "")
+            if [ -z "$PR_NUMBER" ]; then
+              echo "No PR found for this branch"
+              exit 1
+            fi
+            echo "number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+      
       - name: Build with Hugo
         working-directory: profile
         env:
@@ -42,7 +64,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "https://oppermax.github.io/pr-preview/pr-${{ github.event.pull_request.number }}/"
+            --baseURL "https://oppermax.github.io/pr-preview/pr-${{ steps.pr.outputs.number }}/"
       
       - name: Checkout gh-pages branch
         uses: actions/checkout@v4
@@ -54,10 +76,10 @@ jobs:
       - name: Deploy preview
         run: |
           # Create preview directory
-          mkdir -p gh-pages/pr-preview/pr-${{ github.event.pull_request.number }}
+          mkdir -p gh-pages/pr-preview/pr-${{ steps.pr.outputs.number }}
           
           # Copy built site to preview directory
-          cp -r profile/public/* gh-pages/pr-preview/pr-${{ github.event.pull_request.number }}/
+          cp -r profile/public/* gh-pages/pr-preview/pr-${{ steps.pr.outputs.number }}/
           
           # Configure git
           cd gh-pages
@@ -67,17 +89,60 @@ jobs:
           # Commit and push
           git add .
           if ! git diff --cached --quiet; then
-            git commit -m "Deploy preview for PR #${{ github.event.pull_request.number }}"
+            git commit -m "Deploy preview for PR #${{ steps.pr.outputs.number }}"
             git push origin gh-pages
           else
             echo "No changes to commit"
           fi
       
       - name: Comment PR
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
             const prNumber = context.issue.number;
+            const previewUrl = `https://oppermax.github.io/pr-preview/pr-${prNumber}/`;
+            
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('Preview deployed')
+            );
+            
+            const commentBody = `## ✅ Preview deployed
+
+Preview URL: ${previewUrl}
+
+Preview will be available in a few moments. The preview will be updated automatically when you push new changes.`;
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: commentBody
+              });
+            }
+      
+      - name: Comment PR for push events
+        if: github.event_name == 'push'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = ${{ steps.pr.outputs.number }};
             const previewUrl = `https://oppermax.github.io/pr-preview/pr-${prNumber}/`;
             
             // Find existing comment
