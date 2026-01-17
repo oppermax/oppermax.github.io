@@ -19,7 +19,7 @@ jobs:
   build-preview:
     runs-on: ubuntu-latest
     # Only run for pull requests or branches that are part of a PR
-    if: github.event_name == 'pull_request' || (github.event_name == 'push' && startsWith(github.ref, 'refs/heads/copilot/'))
+    if: "github.event_name == 'pull_request' || (github.event_name == 'push' && startsWith(github.ref, 'refs/heads/copilot/'))"
     env:
       HUGO_VERSION: 0.131.0
     steps:
