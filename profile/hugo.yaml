@@ -4,7 +4,8 @@ languageCode: en-GB
 theme: hello-friend-ng
 copyright: Max Opperman
 
-paginate: 10
+pagination:
+  pagerSize: 10
 
 params:
   dateform: "Jan 2, 2006"
@@ -13,7 +14,7 @@ params:
   dateformNumTime: "2006-01-02 15:04"
 
   # Subtitle for home
-  homeSubtitle: "DevOps Engineer"
+  # homeSubtitle: "DevOps Engineer"
 
   # Set disableReadOtherPosts to true in order to hide the links to other posts
   disableReadOtherPosts: false
@@ -25,8 +26,8 @@ params:
   enableGlobalLanguageMenu: false
 
   # Metadata mostly used in document's head
-  description: "Max Opperman - DevOps Engineer"
-  keywords: "devops, engineer, max opperman"
+  description: "Max Opperman"
+  keywords: "devops, engineer, max opperman, cyber security, cloud, automation, observability, reliability, integrity"
   images: [""]
 
   # Logo configuration
@@ -34,22 +35,20 @@ params:
     logoText: "max opperman"
     logoHomeLink: "/"
 
+  # Custom CSS files
+  customCSS:
+    - /css/custom.css
+
   # Social icons
-  [[params.social]]
-    name = "email"
-    url = "mailto:moin+website@oppermax.com"
-
-  [[params.social]]
-    name = "github"
-    url = "https://github.com/oppermax"
-
-  [[params.social]]
-    name = "linkedin"
-    url = "https://www.linkedin.com/in/max-opperman-a1a45b1b6/"
-
-  [[params.social]]
-    name = "soundcloud"
-    url = "https://soundcloud.com/oppermax"
+  social:
+    - name: "email"
+      url: "mailto:moin+website@oppermax.com"
+    - name: "github"
+      url: "https://github.com/oppermax"
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/max-opperman-a1a45b1b6/"
+    - name: "soundcloud"
+      url: "https://soundcloud.com/oppermax"
 
 taxonomies:
   category: "categories"
@@ -59,8 +58,8 @@ taxonomies:
 languages:
   en:
     title: "max opperman"
-    subtitle: "DevOps Engineer"
-    keywords: "devops, engineer"
+    #subtitle: "DevOps Engineer"
+    keywords: "devops, engineer, max opperman, cyber security, cloud, automation, observability, reliability, integrity"
     copyright: '<a href="https://oppermax.com/">Max Opperman</a>'
     readOtherPosts: "Read other posts"
 
@@ -71,11 +70,11 @@ languages:
 
 menu:
   main:
-    - identifier: blog
-      name: Blog
-      url: /posts
-      weight: 1
+    # - identifier: blog
+    #   name: Blog
+    #   url: /posts
+    #   weight: 1
     - identifier: about
-      name: About
+      name: about me
       url: /about
       weight: 2
