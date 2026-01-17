@@ -1,0 +1,115 @@
+name: Deploy PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-preview:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.131.0
+    steps:
+      - name: Install Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+      
+      - name: Install Dart Sass
+        run: sudo snap install dart-sass
+      
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      
+      - name: Build with Hugo
+        working-directory: profile
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: Europe/Berlin
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "https://oppermax.github.io/pr-preview/pr-${{ github.event.pull_request.number }}/"
+      
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+          fetch-depth: 0
+      
+      - name: Deploy preview
+        run: |
+          # Create preview directory
+          mkdir -p gh-pages/pr-preview/pr-${{ github.event.pull_request.number }}
+          
+          # Copy built site to preview directory
+          cp -r profile/public/* gh-pages/pr-preview/pr-${{ github.event.pull_request.number }}/
+          
+          # Configure git
+          cd gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Commit and push
+          git add .
+          if ! git diff --cached --quiet; then
+            git commit -m "Deploy preview for PR #${{ github.event.pull_request.number }}"
+            git push origin gh-pages
+          else
+            echo "No changes to commit"
+          fi
+      
+      - name: Comment PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.issue.number;
+            const previewUrl = `https://oppermax.github.io/pr-preview/pr-${prNumber}/`;
+            
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('Preview deployed')
+            );
+            
+            const commentBody = `## ✅ Preview deployed
+
+Preview URL: ${previewUrl}
+
+Preview will be available in a few moments. The preview will be updated automatically when you push new changes.`;
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: commentBody
+              });
+            }
