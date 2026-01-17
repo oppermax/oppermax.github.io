@@ -1,0 +1,4 @@
+/* Custom cursor color override */
+.logo__cursor {
+  background: #00d4aa !important; /* Teal/cyan color - change this to your preferred color */
+}

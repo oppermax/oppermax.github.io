@@ -1,3 +1,3 @@
-[submodule "profile/themes/hugo-theme-hello-friend-ng"]
-	path = profile/themes/hugo-theme-hello-friend-ng
+[submodule "profile/themes/hello-friend-ng"]
+	path = profile/themes/hello-friend-ng
 	url = https://github.com/rhazdon/hugo-theme-hello-friend-ng.git
