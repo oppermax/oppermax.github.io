@@ -1,9 +1,11 @@
 baseURL: https://oppermax.com/
 title: max opperman
 languageCode: en-GB
-paginate: 10
 
 theme: hugo-theme-hello-friend-ng
+
+pagination:
+  pagerSize: 10
 
 enableRobotsTXT: true
 enableEmoji: true
